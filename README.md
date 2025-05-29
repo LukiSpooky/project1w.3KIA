@@ -15,7 +15,7 @@ Das Ziel war, ein End-to-End Machine Learning Modell zu trainieren, evaluieren u
 | Linear Regression   | 0.74     | 60.5         | 116.1          |
 | Random Forest       | **0.78** | **42.3**     | **106.0**      |
 
-➡**Random Forest** wurde für das Deployment gewählt.
+**Random Forest** wurde für das Deployment gewählt.
 
 ---
 
