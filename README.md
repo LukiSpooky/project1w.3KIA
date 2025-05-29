@@ -67,10 +67,12 @@ Das Modell wurde als interaktive Gradio-Webanwendung auf Hugging Face Spaces ver
 
 | Name | Link |
 |------|------|
-| eb-App | [Hugging Face Space](https://huggingface.co/spaces/huserluk/project1w.3KIA) |
+| Web-App | [Hugging Face Space](https://huggingface.co/spaces/huserluk/project1w.3KIA) |
 | Code | [GitHub Repository](https://github.com/LukiSpooky/project1w.3KIA/) |
 
 ---
 
-## Projektstruktur
+## Autor
 
+Luke Huser  
+Modul: AI Applications (w.BA.XX.3KIA-WIN.XX)
