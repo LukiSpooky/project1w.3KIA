@@ -1,71 +1,58 @@
-# 🎬 Movie Revenue Prediction
+# Film Revenue Prediction
 
-## Project Description  
-Predicts box office revenue of movies using metadata from TMDB and IMDB, including genres, directors, and lead actors.
+## Projektbeschreibung
+Dieses Projekt sagt den Umsatz (revenue) von Filmen basierend auf verschiedenen Informationen aus den TMDB- und IMDB-Datensätzen voraus.
 
----
-
-## Results  
-The model shows signs of overfitting. While Random Forest performs better than Linear Regression, the available dataset of ~3200 movies may not generalize well across all genres, directors, and lead actors. More data or stronger regularization may improve results.
-
----
+## Ergebnisse
+Das Modell liefert bereits gute Vorhersagen, zeigt jedoch leichte Überanpassung (Overfitting). Eine größere Datenmenge oder ausgewogenere Feature-Auswahl könnten die Generalisierbarkeit verbessern. 
 
 ## Name & URL
+| Name        | URL                         |
+|-------------|-----------------------------|
+| Huggingface | [Huggingface Space](https://huggingface.co/spaces/lukehuser/movie-revenue) |
+| Code        | [GitHub Repository](https://github.com/lukehuser/movie-revenue)            |
 
-| Name         | URL                              |
-|--------------|-----------------------------------|
-| Huggingface  | [Huggingface Space](https://huggingface.co/spaces/...) |
-| Code         | [GitHub Repository](https://github.com/...) |
-| Dataset      | [SwitchDrive Download](https://drive.switch.ch/...) |
+## Datenquellen und verwendete Features
+| Datenquelle        | Features                                  |
+|--------------------|--------------------------------------------|
+| TMDB Movies        | budget, genres, popularity, release_date, runtime, vote_count, vote_average, etc. |
+| TMDB Credits       | cast, crew (Director)                     |
+| IMDB Ratings       | IMDB_Rating, Meta_score                   |
 
----
+## Erzeugte Features
+| Feature                  | Beschreibung |
+|--------------------------|--------------|
+| genres_onehot            | One-hot-Encoding der Genres |
+| lead_actor               | Erster Schauspieler aus dem Cast |
+| lead_actor_avg_revenue   | Durchschnittlicher Umsatz pro Hauptdarsteller |
+| director_avg_revenue     | Durchschnittlicher Umsatz pro Regisseur |
 
-## Data Sources and Features Used Per Source
+## Modelltraining
 
-| Data Source        | Features                                                             |
-|--------------------|----------------------------------------------------------------------|
-| TMDB Movies        | budget, genres, runtime, popularity, release_date, revenue          |
-| TMDB Credits       | cast (lead actor), crew (director)                                   |
-| IMDB-TMDB Mapping  | id linking between TMDB and IMDB                                     |
+### Datenmenge
+Verfügbar waren 3.229 Filme nach Bereinigung.
 
----
-
-## Features Created
-
-| Feature Name              | Description                                                     |
-|--------------------------|-----------------------------------------------------------------|
-| `lead_actor`             | Name of the top-billed actor (from cast list)                   |
-| `lead_actor_avg_revenue` | Average revenue of all films led by the same actor             |
-| `Director`               | Name of the film director                                       |
-| `director_avg_revenue`   | Average revenue of all films by the same director              |
-| `genres_list`            | List of genres per movie                                        |
-| Genre columns (`Action`, `Drama`, etc.) | One-hot encoded genre flags                     |
-| `release_year`           | Extracted from `release_date`                                  |
+### Datenaufteilung
+Train/Test Split: 80/20
 
 ---
 
-## Model Training
+### Performance (bei schrittweisem Feature-Zuwachs)
 
-### Amount of Data  
-~3200 movies after cleaning.
-
-### Data Splitting Method  
-80/20 Train/Test split.
-
----
-
-## Performance
-
-| It. Nr | Model            | R²     | MAE (Mio $) | RMSE (Mio $) | Features Used                           | Beschreibung                                |
-|--------|------------------|--------|-------------|--------------|------------------------------------------|---------------------------------------------|
-| 1      | Linear Regression| 0.67   | 71.3        | 129.0        | budget, popularity                       | Basis-Modell, Underfitting                  |
-| 2      | Random Forest    | 0.72   | 58.2        | 117.4        | budget, popularity                       | Besser, aber noch etwas instabil            |
-| 3      | Random Forest    | 0.74   | 51.7        | 111.8        | + genre one-hot (18 genres)              | Signifikante Verbesserung durch Genres      |
-| 4      | Random Forest    | 0.78   | 42.3        | 106.0        | + director_avg_revenue                   | Director macht starken Einfluss aus         |
-| 5      | Random Forest    | 0.78   | 42.2        | 106.0        | + lead_actor_avg_revenue                 | Lead Actor trägt kaum mehr zur Verbesserung bei |
-
+| It. Nr | Modell           | R² | MAE (Mio $) | RMSE (Mio $) | Features | Bemerkung |
+|--------|------------------|----|-------------|---------------|----------|-----------|
+| 1      | Linear Regression | 0.43 | 134.6 | 195.7 | `['budget']` | Starkes Underfitting |
+| 2      | Random Forest     | 0.57 | 110.3 | 168.4 | `['budget']` | Leichtes Overfitting |
+| 3      | Random Forest     | 0.65 | 93.1 | 150.7 | + `popularity` | Noch Overfitting |
+| 4      | Random Forest     | 0.72 | 74.5 | 128.6 | + Genres OneHot | Modell verbessert sich |
+| 5      | Random Forest     | 0.78 | 42.3 | 106.0 | + lead_actor_avg_revenue, director_avg_revenue | Bestes Ergebnis |
 
 ---
 
-## References  
-Feature importance analysis and model evaluations are part of the Jupyter Notebook in this repository.
+## Fazit
+Die besten Ergebnisse wurden mit Random Forest erzielt, nachdem genres sowie statistische Durchschnittswerte pro Regisseur und Schauspieler berücksichtigt wurden. Eine Ausweitung auf weitere Features wie Produktionsland oder Marketingbudget könnte das Modell weiter verbessern.
+
+## Referenzen
+- [TMDB API](https://www.themoviedb.org/documentation/api)
+- [IMDb Datasets](https://www.imdb.com/interfaces/)
+- Scikit-learn Dokumentation
