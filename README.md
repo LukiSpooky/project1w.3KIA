@@ -56,10 +56,14 @@ The model shows signs of overfitting. While Random Forest performs better than L
 
 ## Performance
 
-| Model             | R²     | MAE (USD)        | RMSE (USD)       | Notes           |
-|------------------|--------|------------------|------------------|------------------|
-| Linear Regression| 0.74   | ~60,509,000      | ~116,115,000     | Slight underfitting |
-| Random Forest     | 0.78   | ~42,273,000      | ~106,045,000     | Better, but some overfitting |
+| It. Nr | Model            | R²     | MAE (Mio $) | RMSE (Mio $) | Features Used                           | Beschreibung                                |
+|--------|------------------|--------|-------------|--------------|------------------------------------------|---------------------------------------------|
+| 1      | Linear Regression| 0.67   | 71.3        | 129.0        | budget, popularity                       | Basis-Modell, Underfitting                  |
+| 2      | Random Forest    | 0.72   | 58.2        | 117.4        | budget, popularity                       | Besser, aber noch etwas instabil            |
+| 3      | Random Forest    | 0.74   | 51.7        | 111.8        | + genre one-hot (18 genres)              | Signifikante Verbesserung durch Genres      |
+| 4      | Random Forest    | 0.78   | 42.3        | 106.0        | + director_avg_revenue                   | Director macht starken Einfluss aus         |
+| 5      | Random Forest    | 0.78   | 42.2        | 106.0        | + lead_actor_avg_revenue                 | Lead Actor trägt kaum mehr zur Verbesserung bei |
+
 
 ---
 
