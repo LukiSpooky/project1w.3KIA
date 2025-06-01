@@ -39,13 +39,15 @@ Train/Test Split: 80/20
 
 ### Performance (bei schrittweisem Feature-Zuwachs)
 
-| It. Nr | Modell           | R² | MAE (Mio $) | RMSE (Mio $) | Features | Bemerkung |
-|--------|------------------|----|-------------|---------------|----------|-----------|
-| 1      | Linear Regression | 0.43 | 134.6 | 195.7 | `['budget']` | Starkes Underfitting |
-| 2      | Random Forest     | 0.57 | 110.3 | 168.4 | `['budget']` | Leichtes Overfitting |
-| 3      | Random Forest     | 0.65 | 93.1 | 150.7 | + `popularity` | Noch Overfitting |
-| 4      | Random Forest     | 0.72 | 74.5 | 128.6 | + Genres OneHot | Modell verbessert sich |
-| 5      | Random Forest     | 0.78 | 42.3 | 106.0 | + lead_actor_avg_revenue, director_avg_revenue | Bestes Ergebnis |
+| It. Nr | Modell            | R²     | MAE (Mio $) | RMSE (Mio $) | Features                                                                 | Bemerkung                                                  |
+|--------|-------------------|--------|-------------|--------------|--------------------------------------------------------------------------|------------------------------------------------------------|
+| 1      | Linear Regression | 0.668  | 50.56       | 94.09        | `['budget', 'popularity']`                                              | Gutes Basismodell, noch leichtes Underfitting              |
+| 2      | Random Forest     | 0.687  | 48.19       | 91.30        | `['budget', 'popularity']`                                              | Leichtes Overfitting sichtbar                              |
+| 3      | Random Forest     | 0.594  | 72.32       | 143.29       | `['budget', 'popularity']` auf bereinigtem Datensatz                    | Schwächer nach Bereinigung, Underfitting erkennbar         |
+| 4      | Random Forest     | 0.612  | 70.01       | 141.52       | + `lead_actor_freq`                                                     | Kleine Verbesserung, Modell bleibt leicht Underfitting   |
+| 5      | Random Forest     | 0.607  | 69.20       | 142.45       | + `genres` (One-Hot für 4 Genres)                                       | Keine klare Verbesserung, leichtes Underfitting             |
+| 6      | Random Forest     | 0.709  | 52.93       | 122.46       | + `director_avg_revenue`                                                | Gute Generalisierung, kein Overfitting                     |
+| 7      | Random Forest     | **0.761** | **44.01**   | **111.11**   | + `lead_actor_avg_revenue`                                              | Bestes Modell, gut generalisiert, kein Overfitting         |
 
 ---
 
