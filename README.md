@@ -53,8 +53,3 @@ Train/Test Split: 80/20
 
 ## Fazit
 Die besten Ergebnisse wurden mit Random Forest erzielt, nachdem genres sowie statistische Durchschnittswerte pro Regisseur und Schauspieler berücksichtigt wurden. Eine Ausweitung auf weitere Features wie Produktionsland oder Marketingbudget könnte das Modell weiter verbessern.
-
-## Referenzen
-- [TMDB API](https://www.themoviedb.org/documentation/api)
-- [IMDb Datasets](https://www.imdb.com/interfaces/)
-- Scikit-learn Dokumentation
