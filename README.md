@@ -9,8 +9,8 @@ Das Modell liefert bereits gute Vorhersagen, zeigt jedoch leichte Überanpassung
 ## Name & URL
 | Name        | URL                         |
 |-------------|-----------------------------|
-| Huggingface | [Huggingface Space](https://huggingface.co/spaces/lukehuser/movie-revenue) |
-| Code        | [GitHub Repository](https://github.com/lukehuser/movie-revenue)            |
+| Huggingface | [Huggingface Space](https://huggingface.co/spaces/huserluk/project1w.3KIA) |
+| Code        | [GitHub Repository](https://github.com/LukiSpooky/project1w.3KIA)            |
 
 ## Datenquellen und verwendete Features
 | Datenquelle        | Features                                  |
