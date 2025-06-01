@@ -15,9 +15,9 @@ Das Modell liefert bereits gute Vorhersagen, zeigt jedoch leichte Überanpassung
 ## Datenquellen und verwendete Features
 | Datenquelle        | Features                                  |
 |--------------------|--------------------------------------------|
-| TMDB Movies        | budget, genres, popularity, release_date, runtime, vote_count, vote_average, etc. |
-| TMDB Credits       | cast, crew (Director)                     |
-| IMDB Ratings       | IMDB_Rating, Meta_score                   |
+| [TMDB Movies](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv)        | budget, genres, popularity, release_date, runtime, vote_count, vote_average, etc. |
+| [TMDB Credits](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata?select=tmdb_5000_credits.csv)       | cast, crew (Director)                     |
+| [IMDB Ratings](https://www.kaggle.com/datasets/shubhamchandra235/imdb-and-tmdb-movie-metadata-big-dataset-1m)       | IMDB_Rating, Meta_score                   |
 
 ## Erzeugte Features
 | Feature                  | Beschreibung |
